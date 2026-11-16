@@ -42,7 +42,7 @@ networks:
 
 volume:
   alloy_data:
-    # super optional, only really need driver/driver opts on the host machine
+    # optional if you don't care about big uptime
     driver: local
     driver_opts:
       type: none

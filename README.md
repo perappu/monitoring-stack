@@ -48,5 +48,5 @@ You can `git checkout child-node` to have just the relevant files if you want.
 3. Update .env file with hostname of server
 4. `cd config/alloy`
 2. If you're on Ubuntu, `cat config-ubuntu.alloy >> config.alloy` to capture systemd
-7. To add Prometheus, `cat config-prometheus.alloy >> config.alloy`
+7. IF you need Prometheus (you don't), `cat config-prometheus.alloy >> config.alloy`
 8. Update `prometheus.remote_write.endpoint.host` and `loki.write.endpoint.url` to your actual domains as needed

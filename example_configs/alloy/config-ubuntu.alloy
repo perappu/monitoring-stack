@@ -1,0 +1,26 @@
+loki.relabel "journal" {
+  forward_to = []
+
+  rule {
+    source_labels = ["__journal__systemd_unit"]
+    target_label = "unit"
+  }
+
+  rule {
+    source_labels = ["__journal_errno"]
+    target_label = "errno"
+  }
+
+  rule {
+    source_labels = ["__journal_priority_keyword"]
+    target_label = "severity"
+  }
+}
+
+loki.source.journal "systemd" {
+  forward_to = [loki.write.default.receiver]
+  relabel_rules = loki.relabel.journal.rules
+  path          = "/var/log/journal"
+  labels = { component = "loki.source.journal" }
+}
+

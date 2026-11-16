@@ -1,0 +1,24 @@
+prometheus.exporter.unix "local_system" { }
+
+prometheus.exporter.unix "hoststats" {
+    enable_collectors = ["cpu","meminfo"]
+    sysfs_path  = "/host/sys"
+    procfs_path = "/host/proc"
+    rootfs_path = "/host/rootfs"
+    include_exporter_metrics = true
+}
+
+prometheus.scrape "hostscraper" {
+    targets = prometheus.exporter.unix.hoststats.targets
+    forward_to = [prometheus.remote_write.prometheusout.receiver]
+}
+
+prometheus.remote_write "prometheusout" {
+    endpoint {
+        url="http://yourdomain:9090/api/v1/write"
+        write_relabel_config {
+            target_label = "node"
+	        replacement = sys.env("NODE_NAME")
+	    }
+    }
+}

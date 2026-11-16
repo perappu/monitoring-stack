@@ -4,7 +4,7 @@ docker-compose files and configs for my monitoring stack. Alloy collects metrics
 Greatly referenced from the wonderful https://blog.fixermark.com/posts/2025/monitoring-home-network-grafana-loki-prometheus-alloy/ which is like the only no-nonsense, actually-written-by-a-human guide I found on doing this.
 
 ## notes:
-- Generally speakng, metrics are pull, logs are push. However...
+- Generally speaking, metrics are pull, logs are push. However...
     - Logs being "push" means Alloy is required on all nodes.
     - Because we're running Alloy anyway, we may as well collect our metrics with it, making our metrics "push" instead of the usual "pull". For something like Iocaine, you'd probably be running a local Prometheus in agent mode anyways, and Alloy can replace that.
         - I'll mention [Prometheus federation](https://prometheus.io/docs/prometheus/latest/federation/) here, but it's really not necessary if you're running Alloy. If you're _not_ running Alloy, then hierarchical federation is exactly what you want.

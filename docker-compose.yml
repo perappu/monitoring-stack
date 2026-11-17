@@ -22,6 +22,7 @@ services:
       - grafana_data:/var/lib/grafana
     networks:
       - loki
+      - public #remove if not using firehol
 
   # loki for logs
   loki:
@@ -36,6 +37,7 @@ services:
     command: -config.file=/etc/loki/loki-config.yml
     networks:
     - loki
+    - public #remove if not using firehol
 
   # prometheus for metrics
   prometheus:
@@ -51,6 +53,7 @@ services:
       - "--web.enable-remote-write-receiver"
     networks:
       - loki
+      - public #remove if not using firehol
 
 secrets:
    gf_admin_email:
@@ -83,3 +86,11 @@ volumes:
 networks:
   loki:
     driver: bridge
+  public: #remove if not using firehol
+    driver: bridge
+    ipam:
+     driver: default
+     config:
+       - subnet: 172.100.0.0/16
+    driver_opts:
+      com.docker.network.bridge.name: br_public

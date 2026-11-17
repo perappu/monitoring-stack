@@ -9,7 +9,8 @@ services:
     # network_mode: host for standalone alloy
     pid: host
     volumes:
-      - type: alloy_data
+      - type: volume
+        source: alloy_data
       - type: bind
         source: ./config/alloy
         target: /etc/alloy

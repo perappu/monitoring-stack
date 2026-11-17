@@ -9,8 +9,12 @@ services:
     network_mode: host
     pid: host
     volumes:
-      - ./config/alloy:/etc/alloy
-      - alloy_data:/var/lib/alloy/data
+      - type: bind
+        source: ./config/alloy
+        target: /etc/alloy
+      - type: bind
+        source: /var/lib/alloy/data
+        target: alloy_data
       - type: bind
         source: /var/log
         target: /var/log

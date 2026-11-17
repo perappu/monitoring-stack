@@ -72,4 +72,5 @@ storage_config:
     active_index_directory: /loki/tsdb-index
     cache_location: /loki/tsdb-cache
 
-reporting_enabled: false
+analytics:
+  reporting_enabled: false

@@ -15,8 +15,12 @@ services:
       - GF_ANALYTICS_REPORTING_ENABLED=false
       - GF_LOG_MODE=console file
     secrets:
-      my_secret:
-        file: ./my_secret.txt
+      gf_admin_email:
+        file: ./secrets/gf_admin_email.txt
+      gf_admin_user:
+        file: ./secrets/gf_admin_user.txt
+      gf_admin_password:
+        file: ./secrets/gf_admin_password.txt
     ports:
       - '3000:3000'
     volumes:
@@ -54,14 +58,6 @@ services:
       - "--enable-feature=remote-write-receiver"
     networks:
       - loki
-
-secrets:
-   gf_admin_email:
-     file: ./secrets/gf_admin_email.txt
-   gf_admin_user:
-     file: ./secrets/gf_admin_user.txt
-   gf_admin_password:
-     file: ./secrets/gf_admin_password.txt
 
 volumes:
   grafana_data:

@@ -11,6 +11,7 @@ services:
     volumes:
       - type: volume
         source: alloy_data
+        target: /var/lib/alloy/data
       - type: bind
         source: ./config/alloy
         target: /etc/alloy

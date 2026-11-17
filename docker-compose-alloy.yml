@@ -53,7 +53,7 @@ networks:
     driver_opts:
       com.docker.network.bridge.name: br_public
 
-volume:
+volumes:
   alloy_data:
     # optional if you don't care about big uptime
     driver: local

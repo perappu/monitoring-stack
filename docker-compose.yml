@@ -17,13 +17,13 @@ services:
       - gf_admin_user
       - gf_admin_password
     ports:
-      - '3000:3000'
+      - 127.0.0.1:3000:3000
     volumes:
       - ./config/grafana/provisioning/:/etc/grafana/provisioning
       - grafana_data:/var/lib/grafana
     networks:
       - loki
-      - public #remove if not using firehol
+      - caddy_network # remove if not using caddy
 
   # loki for logs
   loki:
@@ -34,11 +34,11 @@ services:
       - ./config/loki:/etc/loki
       - loki_data:/loki
     ports:
-    - "3100:3100"
+    - 127.0.0.1:3100:3100
     command: -config.file=/etc/loki/loki-config.yml
     networks:
     - loki
-    - public #remove if not using firehol
+    - caddy_network # remove if not using caddy
 
   # prometheus for metrics
   prometheus:
@@ -46,7 +46,7 @@ services:
     container_name: prometheus
     restart: unless-stopped
     ports:
-      - 9090:9090
+      - 127.0.0.1:9090:9090
     volumes:
       - prometheus_data:/prometheus
       - ./config/prometheus/prometheus.yml:/prometheus/prometheus.yml
@@ -54,7 +54,7 @@ services:
       - "--web.enable-remote-write-receiver"
     networks:
       - loki
-      - public #remove if not using firehol
+      - caddy_network # remove if not using caddy
 
 secrets:
    gf_admin_email:
@@ -87,11 +87,5 @@ volumes:
 networks:
   loki:
     driver: bridge
-  public: #remove if not using firehol
-    driver: bridge
-    ipam:
-     driver: default
-     config:
-       - subnet: 172.100.0.0/16
-    driver_opts:
-      com.docker.network.bridge.name: br_public
+  caddy_network: # remove if not using caddy
+    external: true

@@ -5,8 +5,6 @@ services:
     container_name: grafana
     restart: unless-stopped
     environment:
-      - GF_SECURITY_ADMIN_EMAIL__FILE=/run/secrets/gf_admin_email
-      - GF_SECURITY_ADMIN_USER__FILE=/run/secrets/gf_admin_user
       - GF_SECURITY_ADMIN_PASSWORD__FILE=/run/secret/gf_admin_password
       - GF_FEATURE_TOGGLES_ENABLE=alertingSimplifiedRouting,alertingQueryAndExpressionsStepMode
       - GF_ANALYTICS_REPORTING_ENABLED=false
@@ -58,10 +56,6 @@ services:
       - caddy_network # remove if not using caddy
 
 secrets:
-   gf_admin_email:
-     file: ./secrets/gf_admin_email.txt
-   gf_admin_user:
-     file: ./secrets/gf_admin_user.txt
    gf_admin_password:
      file: ./secrets/gf_admin_password.txt
 

@@ -16,9 +16,9 @@ services:
     ports:
       - 127.0.0.1:3000:3000
     volumes:
+      - grafana_data:/var/lib/grafana
       - ./config/grafana/provisioning/:/etc/grafana/provisioning
       - ./config/grafana/grafana.ini:/etc/grafana/grafana.ini
-      - grafana_data:/var/lib/grafana
     networks:
       - loki
       - caddy_network # remove if not using caddy

@@ -10,6 +10,7 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=/run/secret/gf_admin_password
       - GF_FEATURE_TOGGLES_ENABLE=alertingSimplifiedRouting,alertingQueryAndExpressionsStepMode
       - GF_ANALYTICS_REPORTING_ENABLED=false
+      - GF_SERVER_ROOT_URL=${GRAFANA_ROOT_URL}
       - GF_LOG_MODE=console file
     secrets:
       - gf_admin_email

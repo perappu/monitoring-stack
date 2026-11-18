@@ -12,8 +12,6 @@ services:
       - GF_SERVER_DOMAIN=${GRAFANA_SERVER_DOMAIN}
       - GF_LOG_MODE=console file
     secrets:
-      - gf_admin_email
-      - gf_admin_user
       - gf_admin_password
     ports:
       - 127.0.0.1:3000:3000

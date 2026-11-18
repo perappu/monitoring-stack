@@ -32,6 +32,10 @@ services:
         source: /sys
         target: /host/sys
         read_only: true
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+        read_only: true
     ports:
       - 127.0.0.1:12345:12345
     command:

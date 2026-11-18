@@ -10,7 +10,6 @@ services:
       - GF_ANALYTICS_REPORTING_ENABLED=false
       - GF_SERVER_ROOT_URL=${GRAFANA_ROOT_URL}
       - GF_SERVER_DOMAIN=${GRAFANA_SERVER_DOMAIN}
-      - GF_LOG_MODE=console file
     secrets:
       - gf_admin_password
     ports:

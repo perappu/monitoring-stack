@@ -45,7 +45,7 @@ services:
 
 networks:
   loki:
-    driver: bridge
+    external: true
   caddy_network: # remove if not using caddy
     external: true
 

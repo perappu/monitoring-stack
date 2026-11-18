@@ -5,13 +5,10 @@ services:
     container_name: grafana
     restart: unless-stopped
     environment:
-      - GF_SECURITY_ADMIN_PASSWORD__FILE=/run/secret/gf_admin_password
       - GF_FEATURE_TOGGLES_ENABLE=alertingSimplifiedRouting,alertingQueryAndExpressionsStepMode
       - GF_ANALYTICS_REPORTING_ENABLED=false
       - GF_SERVER_ROOT_URL=${GRAFANA_ROOT_URL}
       - GF_SERVER_DOMAIN=${GRAFANA_SERVER_DOMAIN}
-    secrets:
-      - gf_admin_password
     ports:
       - 127.0.0.1:3000:3000
     volumes:
@@ -52,10 +49,6 @@ services:
     networks:
       - loki
       - caddy_network # remove if not using caddy
-
-secrets:
-   gf_admin_password:
-     file: ./secrets/gf_admin_password.txt
 
 volumes:
   grafana_data:

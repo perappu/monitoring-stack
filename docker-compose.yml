@@ -5,9 +5,9 @@ services:
     container_name: grafana
     restart: unless-stopped
     environment:
-      - GF_SECURITY_ADMIN_EMAIL=/run/secrets/gf_admin_email
-      - GF_SECURITY_ADMIN_USER=/run/secrets/gf_admin_user
-      - GF_SECURITY_ADMIN_PASSWORD=/run/secret/gf_admin_password
+      - GF_SECURITY_ADMIN_EMAIL__FILE=/run/secrets/gf_admin_email
+      - GF_SECURITY_ADMIN_USER__FILE=/run/secrets/gf_admin_user
+      - GF_SECURITY_ADMIN_PASSWORD__FILE=/run/secret/gf_admin_password
       - GF_FEATURE_TOGGLES_ENABLE=alertingSimplifiedRouting,alertingQueryAndExpressionsStepMode
       - GF_ANALYTICS_REPORTING_ENABLED=false
       - GF_SERVER_ROOT_URL=${GRAFANA_ROOT_URL}

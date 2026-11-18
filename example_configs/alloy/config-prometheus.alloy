@@ -15,7 +15,7 @@ prometheus.scrape "hostscraper" {
 
 prometheus.remote_write "prometheusout" {
     endpoint {
-        url="http://yourdomain:9090/api/v1/write"
+        url=sys.env("PROMETHEUS_ENDPOINT_URL")
         write_relabel_config {
             target_label = "node"
 	        replacement = sys.env("NODE_NAME")
